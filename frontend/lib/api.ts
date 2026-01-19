@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ||'https://invertory-management-system-di4s.vercel.app' ||'http://localhost:5000' ;
+const API_URL = process.env.NEXT_PUBLIC_API_URL ||'https://invertory-management-system-di4s.vercel.app/' ||'http://localhost:5000' ;
 
 const api = axios.create({
-  baseURL: `${API_URL}/api`,
+  baseURL: `${API_URL}api`,
   headers: {
     'Content-Type': 'application/json',
   },
