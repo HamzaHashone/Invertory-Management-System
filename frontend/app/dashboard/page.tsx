@@ -45,16 +45,16 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <Navbar />
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12 animate-fade-in-up">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-8 sm:mb-12 animate-fade-in-up">
           <div>
-            <h1 className="text-4xl font-bold mb-2">Dashboard</h1>
-            <p className="text-gray-600">Welcome back! Here's your inventory overview</p>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">Dashboard</h1>
+            <p className="text-sm sm:text-base text-gray-600">Welcome back! Here's your inventory overview</p>
           </div>
           <button
             onClick={() => router.push('/lots/new')}
-            className="modern-btn-primary px-6 py-3"
+            className="modern-btn-primary px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap"
           >
             + Create New Lot
           </button>
@@ -86,61 +86,61 @@ export default function DashboardPage() {
             ))}
           </div>
         ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {/* Investment Card */}
           <div className="modern-card animate-fade-in-up stagger-1">
-            <div className="flex items-center justify-between mb-4">
-              <span className="stat-badge">Investment</span>
-              <svg className="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <span className="stat-badge text-xs">Investment</span>
+              <svg className="w-6 h-6 sm:w-8 sm:h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">
+            <p className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
               ${stats?.totalInvestment?.toFixed(2) ?? '0.00'}
             </p>
-            <p className="text-sm text-gray-500">Total capital invested</p>
+            <p className="text-xs sm:text-sm text-gray-500">Total capital invested</p>
           </div>
 
           {/* Revenue Card */}
           <div className="gradient-card-success animate-fade-in-up stagger-2">
-            <div className="flex items-center justify-between mb-4">
-              <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold">Revenue</span>
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <span className="bg-white/20 px-2 sm:px-3 py-1 rounded-full text-xs font-semibold">Revenue</span>
+              <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
             </div>
-            <p className="text-3xl font-bold mb-1">
+            <p className="text-2xl sm:text-3xl font-bold mb-1">
               ${stats?.totalRevenue?.toFixed(2) ?? '0.00'}
             </p>
-            <p className="text-sm text-white/80">Total sales generated</p>
+            <p className="text-xs sm:text-sm text-white/80">Total sales generated</p>
           </div>
 
           {/* Profit Card */}
           <div className="gradient-card-primary animate-fade-in-up stagger-3">
-            <div className="flex items-center justify-between mb-4">
-              <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold">Profit</span>
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <span className="bg-white/20 px-2 sm:px-3 py-1 rounded-full text-xs font-semibold">Profit</span>
+              <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
-            <p className="text-3xl font-bold mb-1">
+            <p className="text-2xl sm:text-3xl font-bold mb-1">
               ${stats?.totalProfit?.toFixed(2) ?? '0.00'}
             </p>
-            <p className="text-sm text-white/80">Net margin on sales</p>
+            <p className="text-xs sm:text-sm text-white/80">Net margin on sales</p>
           </div>
 
           {/* Active Lots Card */}
           <div className="modern-card animate-fade-in-up stagger-4">
-            <div className="flex items-center justify-between mb-4">
-              <span className="stat-badge-success">Active</span>
-              <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <span className="stat-badge-success text-xs">Active</span>
+              <svg className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
               </svg>
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">
+            <p className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
               {stats?.activeLots ?? 0}
             </p>
-            <p className="text-sm text-gray-500">Active inventory lots</p>
+            <p className="text-xs sm:text-sm text-gray-500">Active inventory lots</p>
           </div>
         </div>
         )}
@@ -337,21 +337,21 @@ export default function DashboardPage() {
 
         {/* Recent Transactions */}
         <div className="modern-card-lg animate-fade-in-up stagger-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-6 sm:mb-8">
             <div>
-              <h2 className="text-2xl font-bold mb-1">Recent Transactions</h2>
-              <p className="text-gray-600 text-sm">Latest sales activity</p>
+              <h2 className="text-xl sm:text-2xl font-bold mb-1">Recent Transactions</h2>
+              <p className="text-gray-600 text-xs sm:text-sm">Latest sales activity</p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               <button
                 onClick={() => router.push('/transactions')}
-                className="px-5 py-2.5 rounded-xl border border-gray-200 bg-white font-semibold text-sm hover:bg-gray-50 transition-all"
+                className="flex-1 sm:flex-none px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl border border-gray-200 bg-white font-semibold text-xs sm:text-sm hover:bg-gray-50 transition-all"
               >
                 View All
               </button>
               <button
                 onClick={() => router.push('/lots')}
-                className="modern-btn-primary px-5 py-2.5 text-sm"
+                className="flex-1 sm:flex-none modern-btn-primary px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm"
               >
                 Manage Lots
               </button>
@@ -381,7 +381,7 @@ export default function DashboardPage() {
               {recentTransactions.map((transaction, index) => (
                 <div
                   key={transaction._id}
-                  className="flex items-center justify-between p-5 rounded-xl hover:bg-gray-50 transition-all cursor-pointer border border-transparent hover:border-gray-100"
+                  className="flex items-center justify-between p-3 sm:p-5 rounded-xl hover:bg-gray-50 transition-all cursor-pointer border border-transparent hover:border-gray-100"
                   style={{
                     animation: `fadeIn 0.3s ease-out forwards`,
                     animationDelay: `${index * 0.05}s`,
@@ -389,27 +389,27 @@ export default function DashboardPage() {
                   }}
                   onClick={() => router.push('/transactions')}
                 >
-                  <div className="flex items-center gap-4 flex-1">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-bold">
+                  <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm sm:text-base flex-shrink-0">
                       {transaction.lotId?.lotNumber?.substring(0, 2) || 'LT'}
                     </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-gray-900 mb-0.5">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-sm sm:text-base text-gray-900 mb-0.5 truncate">
                         {transaction.lotId?.lotNumber || 'Unknown Lot'}
                       </p>
-                      <div className="flex items-center gap-3 text-sm text-gray-500">
-                        <span>Sold by {transaction.soldBy.name}</span>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-xs sm:text-sm text-gray-500">
+                        <span className="truncate">Sold by {transaction.soldBy.name}</span>
                         {transaction.customerName && (
                           <>
-                            <span>•</span>
-                            <span>Customer: {transaction.customerName}</span>
+                            <span className="hidden sm:inline">•</span>
+                            <span className="truncate">Customer: {transaction.customerName}</span>
                           </>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-xl font-bold text-green-600 mb-0.5">
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-base sm:text-xl font-bold text-green-600 mb-0.5">
                       ${transaction.totalRevenue.toFixed(2)}
                     </p>
                     <p className="text-xs text-gray-500">

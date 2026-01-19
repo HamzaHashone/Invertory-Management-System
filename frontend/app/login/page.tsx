@@ -36,19 +36,19 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6">
       <div className="w-full max-w-md">
         {/* Logo */}
-        <div className="text-center mb-12 animate-fade-in-up">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 mb-6 shadow-lg">
-            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
+          <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 mb-4 sm:mb-6 shadow-lg">
+            <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
             </svg>
           </div>
-          <h1 className="text-4xl font-bold mb-3">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">
             Welcome Back
           </h1>
-          <p className="text-gray-600">
+          <p className="text-sm sm:text-base text-gray-600">
             Sign in to manage your inventory
           </p>
         </div>
@@ -92,11 +92,11 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="modern-btn-primary w-full px-8 py-4 text-base disabled:opacity-50 disabled:cursor-not-allowed"
+              className="modern-btn-primary w-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
-                  <div className="spinner w-5 h-5 border-2"></div>
+                  <div className="spinner w-4 h-4 sm:w-5 sm:h-5 border-2"></div>
                   Signing in...
                 </span>
               ) : (

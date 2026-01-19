@@ -243,10 +243,10 @@ export default function EditLotPage() {
     return (
       <ProtectedRoute>
         <Navbar />
-        <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
           <div className="modern-card-lg text-center">
             <div className="spinner mx-auto"></div>
-            <p className="mt-4 text-gray-600 font-medium">Loading lot...</p>
+            <p className="mt-4 text-sm sm:text-base text-gray-600 font-medium">Loading lot...</p>
           </div>
         </div>
       </ProtectedRoute>
@@ -256,16 +256,16 @@ export default function EditLotPage() {
   return (
     <ProtectedRoute>
       <Navbar />
-      <div className="max-w-5xl mx-auto px-6 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12 animate-fade-in-up">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 sm:mb-12 animate-fade-in-up">
           <div>
-            <h1 className="text-4xl font-bold mb-2">Edit Lot</h1>
-            <p className="text-gray-600">Update lot details and inventory</p>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">Edit Lot</h1>
+            <p className="text-sm sm:text-base text-gray-600">Update lot details and inventory</p>
           </div>
           <button
             onClick={() => router.push(`/lots/${lotId}`)}
-            className="px-5 py-2.5 rounded-xl border border-gray-200 bg-white font-semibold text-sm hover:bg-gray-50 transition-all"
+            className="px-4 sm:px-5 py-2.5 rounded-xl border border-gray-200 bg-white font-semibold text-xs sm:text-sm hover:bg-gray-50 transition-all"
           >
             ← Back to Details
           </button>
@@ -289,12 +289,12 @@ export default function EditLotPage() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
           {/* Lot Number */}
           <div className="modern-card-lg animate-fade-in-up stagger-1">
-            <h2 className="text-2xl font-bold mb-6">Lot Information</h2>
+            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6">Lot Information</h2>
             <div>
-              <Label htmlFor="lotNumber" className="floating-label">
+              <Label htmlFor="lotNumber" className="floating-label text-sm">
                 Lot Number
               </Label>
               <Input
@@ -302,7 +302,7 @@ export default function EditLotPage() {
                 value={lotNumber}
                 onChange={(e) => setLotNumber(e.target.value)}
                 required
-                className="modern-input"
+                className="modern-input text-sm"
                 placeholder="LOT-0001"
               />
             </div>
@@ -311,40 +311,40 @@ export default function EditLotPage() {
           {/* Colors and Sizes */}
           {colors.map((color, colorIndex) => (
             <div key={color.id} className="modern-card-lg animate-fade-in-up" style={{animationDelay: `${(colorIndex + 2) * 0.05}s`}}>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold">Color {colorIndex + 1}</h2>
-                <div className="flex gap-3">
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold">Color {colorIndex + 1}</h2>
+                <div className="flex gap-2 sm:gap-3">
                   {colors.length > 1 && (
                     <button
                       type="button"
                       onClick={() => removeColor(color.id)}
-                      className="px-4 py-2 rounded-xl bg-red-50 text-red-600 font-semibold text-sm hover:bg-red-100 transition-all"
+                      className="px-3 sm:px-4 py-2 rounded-xl bg-red-50 text-red-600 font-semibold text-xs sm:text-sm hover:bg-red-100 transition-all"
                     >
-                      Remove Color
+                      Remove
                     </button>
                   )}
                 </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <Label className="floating-label">Color Name</Label>
+                  <Label className="floating-label text-sm">Color Name</Label>
                   <Input
                     value={color.color}
                     onChange={(e) => updateColor(color.id, e.target.value)}
                     required
-                    className="modern-input"
+                    className="modern-input text-sm"
                     placeholder="e.g., Navy Blue"
                   />
                 </div>
 
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <Label className="text-sm font-semibold text-gray-700">Sizes</Label>
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <Label className="text-xs sm:text-sm font-semibold text-gray-700">Sizes</Label>
                     <button
                       type="button"
                       onClick={() => addSize(color.id)}
-                      className="px-4 py-2 rounded-xl bg-purple-50 text-purple-600 font-semibold text-sm hover:bg-purple-100 transition-all"
+                      className="px-3 sm:px-4 py-2 rounded-xl bg-purple-50 text-purple-600 font-semibold text-xs sm:text-sm hover:bg-purple-100 transition-all"
                     >
                       + Add Size
                     </button>
@@ -353,69 +353,85 @@ export default function EditLotPage() {
                     {color.sizes.map((size) => (
                       <div
                         key={size.id}
-                        className="grid grid-cols-5 gap-3"
+                        className="flex flex-col gap-2 p-3 sm:p-4 border border-gray-200 rounded-xl bg-gray-50/50"
                       >
-                        <Input
-                          placeholder="Size"
-                          value={size.size}
-                          onChange={(e) =>
-                            updateSize(color.id, size.id, 'size', e.target.value)
-                          }
-                          required
-                          className="modern-input"
-                        />
-                        <Input
-                          type="number"
-                          placeholder="Qty"
-                          value={size.quantity}
-                          onChange={(e) =>
-                            updateSize(color.id, size.id, 'quantity', e.target.value)
-                          }
-                          required
-                          min="1"
-                          className="modern-input"
-                        />
-                        <Input
-                          type="number"
-                          placeholder="Purchase $"
-                          step="0.01"
-                          value={size.purchaseCostPerPiece}
-                          onChange={(e) =>
-                            updateSize(
-                              color.id,
-                              size.id,
-                              'purchaseCostPerPiece',
-                              e.target.value
-                            )
-                          }
-                          required
-                          min="0"
-                          className="modern-input"
-                        />
-                        <Input
-                          type="number"
-                          placeholder="Sell $"
-                          step="0.01"
-                          value={size.sellCostPerPiece}
-                          onChange={(e) =>
-                            updateSize(
-                              color.id,
-                              size.id,
-                              'sellCostPerPiece',
-                              e.target.value
-                            )
-                          }
-                          required
-                          min="0"
-                          className="modern-input"
-                        />
+                        <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                          <div>
+                            <Label className="text-xs text-gray-600 mb-1 block">Size</Label>
+                            <Input
+                              placeholder="e.g., L"
+                              value={size.size}
+                              onChange={(e) =>
+                                updateSize(color.id, size.id, 'size', e.target.value)
+                              }
+                              required
+                              className="modern-input text-sm h-10"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-xs text-gray-600 mb-1 block">Quantity</Label>
+                            <Input
+                              type="number"
+                              placeholder="0"
+                              value={size.quantity}
+                              onChange={(e) =>
+                                updateSize(color.id, size.id, 'quantity', e.target.value)
+                              }
+                              required
+                              min="1"
+                              className="modern-input text-sm h-10"
+                            />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                          <div>
+                            <Label className="text-xs text-gray-600 mb-1 block">Purchase Price</Label>
+                            <Input
+                              type="number"
+                              placeholder="0.00"
+                              step="0.01"
+                              value={size.purchaseCostPerPiece}
+                              onChange={(e) =>
+                                updateSize(
+                                  color.id,
+                                  size.id,
+                                  'purchaseCostPerPiece',
+                                  e.target.value
+                                )
+                              }
+                              required
+                              min="0"
+                              className="modern-input text-sm h-10"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-xs text-gray-600 mb-1 block">Sell Price</Label>
+                            <Input
+                              type="number"
+                              placeholder="0.00"
+                              step="0.01"
+                              value={size.sellCostPerPiece}
+                              onChange={(e) =>
+                                updateSize(
+                                  color.id,
+                                  size.id,
+                                  'sellCostPerPiece',
+                                  e.target.value
+                                )
+                              }
+                              required
+                              min="0"
+                              className="modern-input text-sm h-10"
+                            />
+                          </div>
+                        </div>
                         <button
                           type="button"
                           onClick={() => removeSize(color.id, size.id)}
                           disabled={color.sizes.length === 1}
-                          className="px-3 py-2 rounded-xl border border-gray-200 bg-white font-semibold text-sm hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="w-full px-3 py-2 rounded-lg border border-red-200 bg-white font-semibold text-xs text-red-600 hover:bg-red-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          Remove
+                          Remove Size
                         </button>
                       </div>
                     ))}
@@ -428,32 +444,32 @@ export default function EditLotPage() {
           <button
             type="button"
             onClick={addColor}
-            className="w-full px-6 py-4 rounded-xl border-2 border-dashed border-gray-300 bg-white font-semibold text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-all"
+            className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-xl border-2 border-dashed border-gray-300 bg-white font-semibold text-sm sm:text-base text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-all"
           >
             + Add Another Color
           </button>
 
           {/* Summary */}
           <div className="gradient-card-primary animate-fade-in-up">
-            <h2 className="text-xl font-bold mb-2">Total Investment</h2>
-            <p className="text-5xl font-bold">
+            <h2 className="text-base sm:text-lg lg:text-xl font-bold mb-2">Total Investment</h2>
+            <p className="text-3xl sm:text-4xl lg:text-5xl font-bold">
               ${calculateTotalInvestment().toFixed(2)}
             </p>
-            <p className="text-sm text-white/80 mt-2">
+            <p className="text-xs sm:text-sm text-white/80 mt-2">
               Combined purchase cost across all items
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <button
               type="submit"
               disabled={loading}
-              className="modern-btn-primary flex-1 px-8 py-4 text-base disabled:opacity-50 disabled:cursor-not-allowed"
+              className="modern-btn-primary flex-1 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
-                  <div className="spinner w-5 h-5 border-2"></div>
+                  <div className="spinner w-4 h-4 sm:w-5 sm:h-5 border-2"></div>
                   Updating lot...
                 </span>
               ) : (
@@ -463,7 +479,7 @@ export default function EditLotPage() {
             <button
               type="button"
               onClick={() => router.push(`/lots/${lotId}`)}
-              className="px-8 py-4 rounded-xl border border-gray-200 bg-white font-semibold text-base hover:bg-gray-50 transition-all"
+              className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-gray-200 bg-white font-semibold text-sm sm:text-base hover:bg-gray-50 transition-all"
             >
               Cancel
             </button>

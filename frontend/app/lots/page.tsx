@@ -100,16 +100,16 @@ function LotsPageContent() {
   return (
     <ProtectedRoute>
       <Navbar />
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12 animate-fade-in-up">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-8 sm:mb-12 animate-fade-in-up">
           <div>
-            <h1 className="text-4xl font-bold mb-2">Inventory Lots</h1>
-            <p className="text-gray-600">Manage and track your product inventory</p>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">Inventory Lots</h1>
+            <p className="text-sm sm:text-base text-gray-600">Manage and track your product inventory</p>
           </div>
           <button
             onClick={() => router.push('/lots/new')}
-            className="modern-btn-primary px-6 py-3"
+            className="modern-btn-primary px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap"
           >
             + Create New Lot
           </button>
@@ -196,7 +196,76 @@ function LotsPageContent() {
                     }}
                     onClick={() => router.push(`/lots/${lot._id}`)}
                   >
-                    <div className="flex items-center justify-between">
+                    {/* Mobile Layout */}
+                    <div className="flex flex-col space-y-4 lg:hidden">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
+                          {lot.lotNumber?.substring(0, 2) || 'LT'}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 truncate">
+                            {lot.lotNumber}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-gray-500">
+                            Created {new Date(lot.createdAt).toLocaleDateString()}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div className="text-center bg-gray-50 rounded-lg p-3">
+                          <p className="text-xs text-gray-500 uppercase font-semibold mb-1">Investment</p>
+                          <p className="text-sm sm:text-base font-bold text-gray-900">
+                            ${lot.totalInvestment?.toFixed(2) ?? '0.00'}
+                          </p>
+                        </div>
+                        <div className="text-center bg-gray-50 rounded-lg p-3">
+                          <p className="text-xs text-gray-500 uppercase font-semibold mb-1">Revenue</p>
+                          <p className="text-sm sm:text-base font-bold text-green-600">
+                            ${lot.totalRevenue?.toFixed(2) ?? '0.00'}
+                          </p>
+                        </div>
+                        <div className="text-center bg-gray-50 rounded-lg p-3">
+                          <p className="text-xs text-gray-500 uppercase font-semibold mb-1">Profit</p>
+                          <p className={`text-sm sm:text-base font-bold ${
+                            (lot.totalProfit ?? 0) >= 0 ? 'text-green-600' : 'text-red-600'
+                          }`}>
+                            ${lot.totalProfit?.toFixed(2) ?? '0.00'}
+                          </p>
+                        </div>
+                        <div className="text-center bg-gray-50 rounded-lg p-3">
+                          <p className="text-xs text-gray-500 uppercase font-semibold mb-1">Remaining</p>
+                          <p className="text-sm sm:text-base font-bold text-gray-900">
+                            {remainingItems}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2 sm:gap-3 pt-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            router.push(`/lots/${lot._id}`);
+                          }}
+                          className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 bg-white font-semibold text-xs sm:text-sm hover:bg-gray-50 transition-all"
+                        >
+                          View Details
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            router.push(`/lots/${lot._id}?sell=true`);
+                          }}
+                          disabled={remainingItems === 0}
+                          className="flex-1 modern-btn-primary px-4 py-2.5 text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          Sell Items
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Desktop Layout */}
+                    <div className="hidden lg:flex items-center justify-between">
                       <div className="flex items-center gap-6 flex-1">
                         <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
                           {lot.lotNumber?.substring(0, 2) || 'LT'}
@@ -287,7 +356,7 @@ export default function LotsPage() {
     <Suspense fallback={
       <ProtectedRoute>
         <Navbar />
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
           <div className="grid grid-cols-1 gap-6">
             {Array.from({ length: 5 }).map((_, i) => (
               <LotCardSkeleton key={i} />
